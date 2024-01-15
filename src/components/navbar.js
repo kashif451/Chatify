@@ -4,7 +4,7 @@ import kashif from "../Images/kashif.jpg"
 const Navbar = () => {
   return (
     <div>
-        <Box height="10vh" bgcolor="#332941" color="white" display="flex" justifyContent="space-around" alignItems="center">
+        <Box height="70px" bgcolor="#332941" color="white" display="flex" justifyContent="space-around" alignItems="center">
           <Typography variant='h6' color='white' fontWeight="bold" mr="4px">Chatify</Typography>
           <Box height="30px" width="85px" display="flex" justifyContent="space-around">
           <Avatar src={kashif} sx={{width:"25px",height:"25px"}}     />

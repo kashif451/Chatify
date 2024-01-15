@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Avatar, Typography } from "@mui/material";
 import jimmi from "../Images/jimmi.jpg";
 
-const Message = () => {
+const Message = ({text}) => {
   return (
     <div>
       <Box display="flex" alignItems="center" gap="30px" flexDirection="row-reverse">
@@ -25,10 +25,12 @@ const Message = () => {
           justifyContent="center"
           borderRadius="0px 10px 10px 10px"
         >
-          <Typography variant="body1" fontWeight="550">
-            {" "}
-            Hello Sir How are you
-          </Typography>
+         
+              <Typography variant="body1" fontWeight="550">
+              {" "}
+             {text}
+            </Typography>
+           
         </Box>
       </Box>
     </div>

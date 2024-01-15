@@ -1,15 +1,25 @@
 import React from 'react'
 import Message from './message'
 
-const Messages = () => {
+const Messages = ({usermsg}) => {
+  // console.log(usermsg)
   return (
-    <div >
-        <Message/>
-        <Message/>
-        <Message/>
-        <Message/>
-        <Message/>
-        <Message/>
+    <div style={{}} >
+       {usermsg.map((data)=>{
+            return(
+ <Message 
+  text={data.text}
+  id={data.id}
+ 
+ 
+ />
+ )
+})
+
+}
+     
+        
+       
     </div>
   )
 }

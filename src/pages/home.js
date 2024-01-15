@@ -12,9 +12,9 @@ const Home = () => {
   return (
     <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh",}} >
     <Box display="flex" justifyContent="center" alignItems="center"  width="900px"  >
-        <Grid container spacing={0} height={600} overflow="hidden" borderRadius={4}   >
+        <Grid container spacing={0} height="100%" overflow="hidden" borderRadius={4}   >
   
-  <Grid item md={4} sx={{backgroundColor:'#3D3C5F', }}>
+  <Grid item md={4} sx={{backgroundColor:'#3D3C5F',  }}>
     <Navbar/>
     <Search/>
     <Chats/>
