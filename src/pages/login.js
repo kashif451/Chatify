@@ -1,20 +1,27 @@
 import React,{useState} from 'react'
 import { Box, TextField, Typography ,Button} from "@mui/material";
-import { NavLink } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
   const [data, setData] = useState({
     email:"",
      password:""  });
-     const [records,setRecords] =useState([])
-  let handleSubmit = (e) => {
-    e.preventDefault();
-
-    let newRecords={...data,id: new Date().getTime().toString()}
-
-    setRecords([...records,newRecords])
-    setData({email:'',password:""})
-    
+  let handleSubmit = async (e) => {
+    if(data.email==='' || data.password===''){
+      console.log("ALL FEILDS ARE MANDATORY")
+    }else{
+      const request=await fetch("http://localhost:4000/user/login",{
+        method:'POST',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },   
+        credentials: 'include',     
+      });
+      const resp= await request.json();
+      <Navigate to="/chatify"/>
+      console.log(resp)
+    }    
   };
   let changeHandler = (e) => {
     setData({...data,
@@ -61,28 +68,12 @@ const Login = () => {
           
           variant="filled"
         />
-         <NavLink to="/chatify">
         <Button variant="contained" onClick={handleSubmit} sx={{color:"white",width:"150px",marginBottom:"20px"}}>Login</Button>
-        </NavLink>
-        <Typography sx={{outline:"none"}} >You do have account? <a href="./register">Register</a></Typography>
+        <Typography sx={{outline:"none"}} >You don't have an account? <a href="./register">Register</a></Typography>
        
       </Box>
     </div>
-    <div>
-    {
-        records.map((g)=>{
-          return(
-            <div >
-              <h1 style={{backgroundColor:"#2f2dff",display:"inline"}}>  {g.email}</h1>
-              <h1 style={{backgroundColor:"#2f2dff",display:"inline"}}>  {g.password}</h1>
-           
-            </div>
-          )
-        }
-
-        )
-      }
-    </div></>
+ </>
   )
 }
 

@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import { Box, TextField, Typography, Button } from "@mui/material";
-import { NavLink } from "react-router-dom";
+
+
 const Register = () => {
   const [data, setData] = useState({
-    username:"",
+    fullName:"",
     email:"",
      password:""  });
-     const [records,setRecords] =useState([])
-  let handleSubmit = (e) => {
-    e.preventDefault();
-
-    let newRecords={...data,id: new Date().getTime().toString()}
-
-    setRecords([...records,newRecords])
-    setData({username:'',email:'',password:""})
-    
+  let handleSubmit = async (e) => {
+    if(data.fullName==='' || data.email==='' || data.password===''){
+      console.log('ALL FEILDS ARE MANDATORY')
+    }else{
+      const request=await fetch("http://localhost:4000/user/register",{
+        method:'POST',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },        
+      });
+      const resp= await request.json();
+      console.log(resp)
+    }  
   };
   let changeHandler = (e) => {
     setData({...data,
@@ -49,11 +55,9 @@ const Register = () => {
           Register
         </Typography>
         <TextField
-         value={data.username}
+         value={data.fullName}
           onChange={changeHandler}
-         
-          autoComplete="off"
-          name="username"
+          name="fullName"
           id="filled-basic"
           label="Full Name"
           variant="filled"
@@ -67,14 +71,12 @@ const Register = () => {
 
         <TextField
         value={data.email}
-          onChange={changeHandler}
-
-          
-          autoComplete="off"
+          onChange={changeHandler}          
           name="email"
           id="filled-basic"
           label="Email"
           variant="filled"
+          type="email"
           sx={{
             marginBottom: "25px",
             backgroundColor: "white",
@@ -85,9 +87,7 @@ const Register = () => {
 
         <TextField
         value={data.password}
-          onChange={changeHandler}
-          
-          autoComplete="off"
+          onChange={changeHandler}          
           name="password"
           sx={{
             marginBottom: "25px",
@@ -101,7 +101,6 @@ const Register = () => {
           
           variant="filled"
         />
-        <NavLink to="/login">
           <Button
             variant="contained"
             sx={{ color: "white", width: "150px", marginBottom: "20px" }}
@@ -109,28 +108,11 @@ const Register = () => {
           >
             Register
           </Button>
-        </NavLink>
         <Typography>
           You do have account? <a href="./login">Login</a>{" "}
         </Typography>
       </Box>
       
-    </div>
-    <div>
-    {
-        records.map((g)=>{
-          return(
-            <div >
-              <h1 style={{backgroundColor:"#2f2dff",display:"inline"}}>  {g.username}</h1>
-              <h1 style={{backgroundColor:"#2f2dff",display:"inline"}}>  {g.email}</h1>
-              <h1 style={{backgroundColor:"#2f2dff",display:"inline"}}>  {g.password}</h1>
-           
-            </div>
-          )
-        }
-
-        )
-      }
     </div>
     </>
   );

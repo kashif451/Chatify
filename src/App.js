@@ -1,37 +1,13 @@
 import './App.css';
-import Home from './pages/home';
-import Login from './pages/login';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Register from './pages/register';
-
-const router=createBrowserRouter([
-  {
-    path:'/register',
-    element: <Register/>
-  },
-  {
-    path:'/login',
-    element: <Login/>
-  },
-  {
-    path:'/chatify',
-    element: <Home/>
-  },
-  {
-    path:'/',
-    element: <h1>HELLO</h1>
-  },
-])
+import Routes from './components/routes';
+import AuthProvider from './context/Auth';
 
 function App() {
   return (
    <>
-   <div >
-   <RouterProvider router={router}/>
-   </div>
+   <AuthProvider>
+    <Routes/>
+   </AuthProvider>
    </>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { faPaperclip, faImage} from '@fortawesome/free-solid-svg-icons'
 
-import {Box, Button, TextField} from "@mui/material"
+import {Box, Button} from "@mui/material"
 
 const Input = ({inputData}) => {
   const [message,SetMessage] =useState({text:""})
